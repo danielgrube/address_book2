@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    {% block head %}
+    <title>Base</title>
+    {% endblock %}
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Address Book Application</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav">
+                    <li><a class = "nav-link" href="{% url 'contacts:contact_list' %}">Home</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:view_profile' %}">Profile</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav navbar-right">
+                    <li><a class = "nav-link" href="{% url 'accounts:view_profile' %}">Home</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+                    <li><a class = "nav-link" href="{% url 'accounts:reset_password' %}">Reset Password</a></li>
+                </ul>
+                <ul class="navbar-nav navbar-rigt">
+                    <li><a class="nav-link" href="{% url 'accounts:register' %}">Register<span class="sr-only">(current)</span></a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </nav>
+    {% block body %}
+        <h1>Base</h1>
+    {% endblock %}
+</body>
+</html>
